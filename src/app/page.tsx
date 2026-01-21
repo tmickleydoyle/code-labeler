@@ -254,7 +254,7 @@ export default function Home() {
                   lineNumbers: "on",
                   renderLineHighlight: "none",
                   padding: { top: 16, bottom: 16 },
-                  placeholder: "// Paste code here...",
+                  placeholder: "// Type code here...",
                 }}
               />
             </div>
