@@ -200,7 +200,10 @@ export default function Home() {
             Code Language Classifier
           </h1>
           <p className="text-gray-400 text-lg">
-            Type code to identify the programming language using AI
+            Powered by a 12M parameter model trained from scratch for this task
+          </p>
+          <p className="text-gray-500 text-sm mt-2">
+            Model is still training — this is the checkpoint after epoch 2
           </p>
         </header>
 
