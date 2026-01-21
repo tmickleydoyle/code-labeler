@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Labeler
 
-## Getting Started
+A Next.js web application that identifies programming languages using an AI model running entirely in your browser.
 
-First, run the development server:
+## Features
+
+- **30 Language Support**: Detects Assembly, C, C++, C#, CSS, Go, HTML, Java, JavaScript, Python, Rust, TypeScript, and more
+- **Privacy-First**: All inference runs locally in your browser - no code is sent to any server
+- **Real-time Results**: See probability percentages for all supported languages
+- **Fast**: Quantized ONNX model for efficient browser inference
+
+## Prerequisites
+
+1. Trained code classifier model from the `language-model` repo
+2. Node.js 18+
+
+## Setup
+
+### 1. Export the trained model
+
+First, ensure you have a trained model in the `language-model` repo:
+
+```bash
+cd ../language-model
+python scripts/train_code_classifier.py
+```
+
+Then export to ONNX format:
+
+```bash
+python scripts/export_onnx.py
+```
+
+### 2. Copy model files
+
+Run the setup script to copy model files:
+
+```bash
+./scripts/setup-model.sh
+```
+
+Or manually copy these files to `public/model/`:
+- `code_classifier_quantized.onnx` - The quantized ONNX model
+- `model_metadata.json` - Label mappings and config
+- `tokenizer.json` - The tokenizer vocabulary
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to use the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push this repo to GitHub
+2. Connect to Vercel
+3. Ensure `public/model/` contains the model files before deploying
 
-## Learn More
+**Note**: Model files are ~15-30MB and will be served as static assets.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+code-labeler/
+├── public/
+│   └── model/
+│       ├── code_classifier_quantized.onnx
+│       ├── model_metadata.json
+│       └── tokenizer.json
+├── src/
+│   ├── app/
+│   │   └── page.tsx          # Main UI
+│   └── lib/
+│       ├── classifier.ts     # ONNX model inference
+│       └── tokenizer.ts      # BPE tokenization
+└── scripts/
+    └── setup-model.sh        # Model file setup
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Supported Languages
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Assembly, Batchfile, C, C#, C++, CMake, CSS, Dockerfile, FORTRAN, Go, HTML, Haskell, Java, JavaScript, Julia, Lua, Makefile, Markdown, PHP, Perl, PowerShell, Python, Ruby, Rust, SQL, Scala, Shell, TeX, TypeScript, Visual Basic

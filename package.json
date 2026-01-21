@@ -6,10 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "cp node_modules/onnxruntime-web/dist/*.wasm node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded*.mjs public/ 2>/dev/null || true",
+    "setup-model": "./scripts/setup-model.sh"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "next": "16.1.4",
+    "onnxruntime-web": "^1.23.2",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
