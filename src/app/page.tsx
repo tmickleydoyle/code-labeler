@@ -200,7 +200,7 @@ export default function Home() {
             Code Language Classifier
           </h1>
           <p className="text-gray-400 text-lg">
-            Paste code to identify the programming language using AI
+            Type code to identify the programming language using AI
           </p>
         </header>
 
@@ -223,7 +223,7 @@ export default function Home() {
           {/* Input Section */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-4">
-              Paste your code {tokenSpans.length > 0 && <span className="text-gray-500">({tokenSpans.length} tokens)</span>}
+              Type your code <span className="text-gray-500">({code.length}/1000 chars{tokenSpans.length > 0 && `, ${tokenSpans.length} tokens`})</span>
             </label>
             <div
               className="w-full rounded-lg overflow-hidden border border-gray-700"
@@ -234,7 +234,7 @@ export default function Home() {
                 defaultLanguage="plaintext"
                 theme="app-dark"
                 value={code}
-                onChange={(value) => setCode(value || "")}
+                onChange={(value) => setCode((value || "").slice(0, 1000))}
                 beforeMount={handleEditorWillMount}
                 onMount={handleEditorDidMount}
                 loading={
