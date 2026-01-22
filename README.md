@@ -1,5 +1,7 @@
 # Code Labeler
 
+https://github.com/user-attachments/assets/cbee1179-9c14-462b-961a-a54a33358ae3
+
 A Next.js web application that identifies programming languages using an AI model running entirely in your browser.
 
 ## Features
