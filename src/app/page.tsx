@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import Link from "next/link";
 import Editor, { BeforeMount, OnMount } from "@monaco-editor/react";
 import type { editor } from "monaco-editor";
 import { loadModel, classifyCode, ClassificationResult, getMetadata } from "@/lib/classifier";
@@ -368,6 +369,12 @@ export default function Home() {
           <p className="mt-1">
             Model runs entirely in your browser - no code is sent to any server
           </p>
+          <Link
+            href="/evals"
+            className="inline-block mt-4 text-blue-400 hover:text-blue-300 transition-colors"
+          >
+            View Evaluation Suite →
+          </Link>
         </footer>
       </div>
     </div>
