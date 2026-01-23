@@ -203,7 +203,7 @@ export default function Home() {
             Powered by a 12M parameter model trained from scratch for this task
           </p>
           <p className="text-gray-500 text-sm mt-2">
-            Model is still training — this is the checkpoint after epoch 6
+            Model trained to epoch 6
           </p>
           <p className="text-amber-500/80 text-xs mt-3">
             Best experienced in Chrome or Brave — Safari may have compatibility issues with browser-based ML
